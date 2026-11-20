@@ -6,6 +6,8 @@ import { getIndustry } from "@/content/industries";
 import { getProduct } from "@/content/products";
 import { getProject } from "@/content/projects";
 
+export const instant = false;
+
 export const metadata: Metadata = {
   title: "Request a quote",
   description:

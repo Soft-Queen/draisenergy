@@ -4,8 +4,6 @@ import { site } from "@/content/site";
 import { Logo } from "./Logo";
 
 export function SiteFooter() {
-  const year = new Date().getFullYear();
-
   return (
     <footer className="illuminated-dark border-t border-white/10">
       <div className="container section">
@@ -86,7 +84,7 @@ export function SiteFooter() {
 
         <div className="flex flex-col gap-3 text-sm text-white/55 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {year} {site.legalName}. All rights reserved.
+            © 2010–2026 {site.legalName}. All rights reserved.
           </p>
           <Link href="/privacy" className="underline-offset-4 hover:underline">
             Privacy notice

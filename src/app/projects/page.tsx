@@ -6,6 +6,8 @@ import { getFeaturedProjects } from "@/content/projects";
 import { getIndustry } from "@/content/industries";
 import type { IndustrySlug } from "@/content/types";
 
+export const instant = false;
+
 export const metadata: Metadata = {
   title: "Projects",
   description:

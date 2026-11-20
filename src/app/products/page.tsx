@@ -4,6 +4,8 @@ import { PageHero } from "@/components/layout/PageHero";
 import { getProductsByCategory, productCategories } from "@/content/products";
 import type { ProductCategorySlug } from "@/content/types";
 
+export const instant = false;
+
 export const metadata: Metadata = {
   title: "Products",
   description:
