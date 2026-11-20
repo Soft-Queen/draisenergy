@@ -5,15 +5,15 @@ import { Logo } from "./Logo";
 
 export function SiteFooter() {
   return (
-    <footer className="illuminated-dark border-t border-white/10">
+    <footer className="site-footer illuminated-dark border-t border-white/10 text-white">
       <div className="container section">
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-4">
-            <Logo tone="dark" />
-            <p className="mt-5 max-w-sm text-sm text-white/75">
+            <Logo tone="dark" showWordmark />
+            <p className="mt-5 max-w-sm text-sm text-white/80">
               {site.descriptor}
             </p>
-            <p className="mt-4 text-sm text-white/60">
+            <p className="mt-4 text-sm text-white/65">
               RC {site.rcNumber} · Incorporated {site.incorporatedOn}
             </p>
           </div>
@@ -21,7 +21,7 @@ export function SiteFooter() {
           <div className="grid gap-8 sm:grid-cols-2 md:col-span-5 md:grid-cols-2">
             {primaryNav.slice(0, 4).map((group) => (
               <div key={group.label}>
-                <p className="text-xs font-bold tracking-[0.14em] text-white/55 uppercase">
+                <p className="text-xs font-bold tracking-[0.14em] text-white/60 uppercase">
                   {group.label}
                 </p>
                 <ul className="mt-3 space-y-2">
@@ -29,7 +29,7 @@ export function SiteFooter() {
                     <li key={item.href}>
                       <Link
                         href={item.href}
-                        className="text-sm text-white/85 underline-offset-4 hover:underline"
+                        className="text-sm text-white/90 underline-offset-4 hover:underline"
                       >
                         {item.label}
                       </Link>
@@ -41,10 +41,10 @@ export function SiteFooter() {
           </div>
 
           <div className="md:col-span-3">
-            <p className="text-xs font-bold tracking-[0.14em] text-white/55 uppercase">
+            <p className="text-xs font-bold tracking-[0.14em] text-white/60 uppercase">
               Contact
             </p>
-            <ul className="mt-3 space-y-2 text-sm text-white/85">
+            <ul className="mt-3 space-y-2 text-sm text-white/90">
               <li>
                 <a
                   href={`mailto:${site.contact.email}`}
@@ -52,16 +52,10 @@ export function SiteFooter() {
                 >
                   {site.contact.email}
                 </a>
-                <span className="mt-1 block text-xs text-white/50">
-                  Email pending verification
-                </span>
               </li>
               {site.contact.addressLines.map((line) => (
                 <li key={line}>{line}</li>
               ))}
-              <li className="text-xs text-white/50">
-                Address pending verification
-              </li>
             </ul>
             <div className="mt-5 flex flex-col gap-2">
               <Link
@@ -80,13 +74,16 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <hr className="my-10 border-white/10" />
+        <hr className="my-10 border-white/15" />
 
-        <div className="flex flex-col gap-3 text-sm text-white/55 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-3 text-sm text-white/65 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © 2010–2026 {site.legalName}. All rights reserved.
           </p>
-          <Link href="/privacy" className="underline-offset-4 hover:underline">
+          <Link
+            href="/privacy"
+            className="text-white/80 underline-offset-4 hover:underline"
+          >
             Privacy notice
           </Link>
         </div>

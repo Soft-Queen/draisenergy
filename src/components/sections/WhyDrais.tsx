@@ -15,7 +15,7 @@ export function WhyDrais() {
             description="Client value comes from coordinated delivery, sourcing depth and transparent attribution — not unsupported rankings or guarantees."
           />
           <figure className="mt-8">
-            <div className="relative aspect-[4/3] overflow-hidden">
+            <div className="reveal-image relative aspect-[4/3]">
               <Image
                 src="/images/engineering-detail.jpg"
                 alt="Illustrative engineering detail photography"

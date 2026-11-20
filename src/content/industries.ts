@@ -101,7 +101,7 @@ export const industries: Industry[] = [
       "cable-management",
       "electrical-equipment",
     ],
-    projectSlugs: ["mtn-infrastructure-support"],
+    projectSlugs: [],
     image: {
       src: "/images/telecoms.jpg",
       alt: "Illustrative telecommunications and network infrastructure photography",

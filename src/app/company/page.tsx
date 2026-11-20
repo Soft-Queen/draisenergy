@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/layout/PageHero";
 import { Button } from "@/components/ui/Button";
-import { companyStory, leadershipNote } from "@/content/company";
+import { CardBody, CardShell } from "@/components/ui/Card";
+import { companyStory } from "@/content/company";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -33,7 +34,8 @@ export default function CompanyPage() {
             </p>
           </div>
           <aside className="space-y-6 lg:col-span-5">
-            <div className="border border-border bg-surface p-6">
+            <CardShell className="bg-surface">
+              <CardBody className="p-6">
               <h2 className="display text-xl">Company identity</h2>
               <dl className="mt-4 space-y-3 text-sm">
                 <div>
@@ -49,8 +51,10 @@ export default function CompanyPage() {
                   <dd className="font-semibold">{site.incorporatedOn}</dd>
                 </div>
               </dl>
-            </div>
-            <div className="border border-border p-6">
+              </CardBody>
+            </CardShell>
+            <CardShell>
+              <CardBody className="p-6">
               <h2 className="display text-xl">Values</h2>
               <ul className="mt-4 space-y-4">
                 {site.values.map((value) => (
@@ -60,11 +64,17 @@ export default function CompanyPage() {
                   </li>
                 ))}
               </ul>
-            </div>
-            <div className="border border-dashed border-border p-6">
-              <p className="review-badge">Leadership pending review</p>
-              <p className="mt-3 text-sm text-steel">{leadershipNote.message}</p>
-            </div>
+              </CardBody>
+            </CardShell>
+            <CardShell className="bg-surface">
+              <CardBody className="p-6">
+              <h2 className="display text-xl">Leadership</h2>
+              <p className="mt-3 text-sm text-steel">
+                Executive profiles and portraits will be published when names, roles
+                and imagery are approved for public use.
+              </p>
+              </CardBody>
+            </CardShell>
             <div className="flex flex-col gap-3 sm:flex-row">
               <Button href="/company/hsseq" variant="secondary">
                 HSSEQ

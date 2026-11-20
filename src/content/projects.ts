@@ -57,14 +57,14 @@ export const projects: Project[] = [
     title: "MTN infrastructure support",
     summary:
       "Selected MTN infrastructure support engagements listed as ongoing in the July 2026 presentation. Status must be refreshed before public launch.",
-    publicationState: "pending-review",
+    publicationState: "draft",
     reviewedAt: null,
-    scope: "Telecommunications infrastructure support (details pending refresh)",
-    draisRole: "Infrastructure support — exact scope pending confirmation",
+    scope: "Telecommunications infrastructure support",
+    draisRole: "Infrastructure support — scope under internal refresh",
     relationshipLabel: "Project relationship referenced in company materials",
     location: "Nigeria",
     year: "2026",
-    status: "Listed as ongoing — refresh before publishing",
+    status: "Internal refresh",
     statusAsOf: "July 2026 presentation",
     industrySlug: "telecommunications",
     capabilitySlugs: [
@@ -82,30 +82,49 @@ export const projects: Project[] = [
 
 /** Names shown for credibility — not endorsements or proof of direct contracts. */
 export const relationshipNames = [
-  { name: "NLNG", note: "Appears in project references" },
-  { name: "TotalEnergies", note: "Appears in project / vendor references" },
-  { name: "Saipem", note: "Appears in project references" },
-  { name: "Daewoo E&C", note: "Appears in project / vendor references" },
-  { name: "Julius Berger", note: "Appears in project / vendor references" },
-  { name: "Alcon", note: "Appears in project references" },
+  {
+    name: "NLNG",
+    note: "Appears in project references",
+    logoAsset: "/brand/relationships/nlng.svg",
+  },
+  {
+    name: "TotalEnergies",
+    note: "Appears in project / vendor references",
+    logoAsset: "/brand/relationships/totalenergies.svg",
+  },
+  {
+    name: "Saipem",
+    note: "Appears in project references",
+    logoAsset: "/brand/relationships/saipem.svg",
+  },
+  {
+    name: "Daewoo E&C",
+    note: "Appears in project / vendor references",
+    logoAsset: "/brand/relationships/daewoo-enc.svg",
+  },
+  {
+    name: "Julius Berger",
+    note: "Appears in project / vendor references",
+    logoAsset: "/brand/relationships/julius-berger.svg",
+  },
+  {
+    name: "Alcon",
+    note: "Appears in project references",
+    logoAsset: "/brand/relationships/alcon.svg",
+  },
 ] as const;
 
 export function getProject(slug: string) {
-  return projects.find((item) => item.slug === slug);
+  const project = projects.find((item) => item.slug === slug);
+  if (!project || project.publicationState === "draft") return undefined;
+  return project;
 }
 
+/** Public portfolio and homepage listings (excludes draft). */
 export function getPublishableProjects() {
-  return projects.filter(
-    (item) =>
-      item.publicationState === "published" ||
-      item.publicationState === "pending-review",
-  );
+  return projects.filter((item) => item.publicationState !== "draft");
 }
 
-/**
- * Homepage and portfolio show pending-review projects with explicit labels.
- * Remove a project from public pages by setting publicationState to "draft".
- */
 export function getFeaturedProjects() {
   return getPublishableProjects();
 }

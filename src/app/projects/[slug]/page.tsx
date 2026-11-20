@@ -13,7 +13,9 @@ type Props = {
 };
 
 export async function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.slug }));
+  return projects
+    .filter((project) => project.publicationState !== "draft")
+    .map((project) => ({ slug: project.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -43,15 +45,7 @@ export default async function ProjectDetailPage({ params }: Props) {
           { label: "Projects", href: "/projects" },
           { label: project.title },
         ]}
-      >
-        <div className="mt-4 flex flex-wrap gap-2">
-          <span className="review-badge">
-            {project.publicationState === "pending-review"
-              ? "Pending review"
-              : "Published"}
-          </span>
-        </div>
-      </PageHero>
+      />
       <section className="section">
         <div className="container grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-7">

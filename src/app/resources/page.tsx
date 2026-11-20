@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/layout/PageHero";
 import { Button } from "@/components/ui/Button";
+import { CardBody, CardShell } from "@/components/ui/Card";
 
 export const metadata: Metadata = {
   title: "Resources",
   description:
-    "Approved public documents for Drais Energy. Raw presentations with confidential material are not published.",
+    "Approved public documents and company profiles from Drais Energy.",
 };
 
 export default function ResourcesPage() {
@@ -14,7 +15,7 @@ export default function ResourcesPage() {
       <PageHero
         eyebrow="Resources"
         title="Resources"
-        description="Only approved current public documents will appear here with file type, size and a readable HTML summary."
+        description="Downloadable company profiles and presentations appear here after editorial and legal review."
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Resources" },
@@ -22,21 +23,24 @@ export default function ResourcesPage() {
       />
       <section className="section">
         <div className="container max-w-3xl">
-          <div className="border border-dashed border-border bg-surface p-8">
-            <p className="review-badge">No public downloads yet</p>
-            <h2 className="display mt-4 text-2xl">Documents pending approval</h2>
+          <CardShell className="bg-surface">
+            <CardBody className="p-8">
+            <h2 className="display text-2xl">Company profiles</h2>
             <p className="mt-3 text-steel">
-              The original company profile PDFs were not available in the local project
-              environment at build time. Even when supplied, raw presentations that contain
-              purchase orders, bids, personal information or sensitive QR data must not be
-              published without redaction and owner approval.
+              We are preparing redacted, publication-safe versions of our industry
+              profiles. Until they are listed here, you can request a copy through
+              contact or request a quote.
             </p>
-            <div className="mt-6">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Button href="/contact" variant="secondary">
-                Request an approved company profile
+                Request a company profile
+              </Button>
+              <Button href="/request-a-quote" variant="ghost">
+                Request a quote
               </Button>
             </div>
-          </div>
+            </CardBody>
+          </CardShell>
         </div>
       </section>
     </>

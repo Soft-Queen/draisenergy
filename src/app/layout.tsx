@@ -3,6 +3,7 @@ import { Inter, Manrope } from "next/font/google";
 import { OrganizationJsonLd } from "@/components/layout/OrganizationJsonLd";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { WhatsAppFloatingButton } from "@/components/contact/WhatsAppFloatingButton";
 import { MotionProvider } from "@/components/motion/MotionProvider";
 import { site } from "@/content/site";
 import "./globals.css";
@@ -61,6 +62,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             {children}
           </main>
           <SiteFooter />
+          <WhatsAppFloatingButton />
         </MotionProvider>
       </body>
     </html>

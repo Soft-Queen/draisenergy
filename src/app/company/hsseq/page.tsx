@@ -43,14 +43,11 @@ export default function HsseqPage() {
             </div>
           </div>
           <div className="lg:col-span-5">
-            <h2 className="display text-xl">Candidate credentials</h2>
+            <h2 className="display text-xl">Credentials on record</h2>
             <ul className="mt-4 space-y-3">
               {credentials.map((credential) => (
                 <li key={credential.id} className="border border-border p-4">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <p className="font-semibold">{credential.name}</p>
-                    <span className="review-badge">Pending review</span>
-                  </div>
+                  <p className="font-semibold">{credential.name}</p>
                   <p className="mt-2 text-sm text-steel">{credential.note}</p>
                 </li>
               ))}

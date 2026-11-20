@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64" role="img">
+  <rect width="280" height="64" fill="none"/>
+  <circle cx="24" cy="32" r="16" fill="#ed1c24"/>
+  <circle cx="24" cy="32" r="7" fill="#ffffff"/>
+  <text x="50" y="40" font-family="Helvetica Neue, Arial, sans-serif" font-size="24" font-weight="700" fill="#191b1e">TotalEnergies</text>
+</svg>

@@ -33,7 +33,7 @@ export function Field({
         <input
           id={id}
           className={[
-            "min-h-11 w-full rounded-[6px] border border-border bg-white px-3 text-base text-charcoal",
+            "min-h-11 w-full rounded-sm border border-border bg-white px-3 text-base text-charcoal",
             error ? "border-brand" : "",
             className,
           ].join(" ")}
@@ -84,7 +84,7 @@ export function TextAreaField({
       <textarea
         id={id}
         className={[
-          "min-h-32 w-full rounded-[6px] border border-border bg-white px-3 py-2.5 text-base text-charcoal",
+          "min-h-32 w-full rounded-sm border border-border bg-white px-3 py-2.5 text-base text-charcoal",
           error ? "border-brand" : "",
           className,
         ].join(" ")}

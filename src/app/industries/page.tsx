@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
 import { PageHero } from "@/components/layout/PageHero";
+import {
+  CardBody,
+  CardMedia,
+  CardMediaImage,
+  InteractiveCardLink,
+} from "@/components/ui/Card";
 import { getPublishedIndustries } from "@/content/industries";
 
 export const metadata: Metadata = {
@@ -27,28 +31,26 @@ export default function IndustriesPage() {
       <section className="section">
         <div className="container grid gap-5 lg:grid-cols-3">
           {industries.map((industry) => (
-            <Link
+            <InteractiveCardLink
               key={industry.slug}
               href={`/industries/${industry.slug}`}
-              className="group border border-border bg-white"
+              className="overflow-hidden"
             >
-              <div className="relative aspect-[16/10]">
-                <Image
+              <CardMedia>
+                <CardMediaImage
                   src={industry.image.src}
                   alt={industry.image.alt}
-                  fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                   sizes="(max-width: 1024px) 100vw, 33vw"
                 />
-              </div>
-              <div className="p-5">
+              </CardMedia>
+              <CardBody>
                 <p className="text-xs tracking-[0.12em] text-steel uppercase">
                   {industry.eyebrow}
                 </p>
                 <h2 className="display mt-2 text-2xl">{industry.title}</h2>
                 <p className="mt-3 text-sm text-steel">{industry.summary}</p>
-              </div>
-            </Link>
+              </CardBody>
+            </InteractiveCardLink>
           ))}
         </div>
       </section>

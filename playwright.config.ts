@@ -7,15 +7,18 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   reporter: "list",
   use: {
-    baseURL: "http://127.0.0.1:3000",
+    baseURL: "http://127.0.0.1:3099",
     trace: "on-first-retry",
   },
   webServer: {
-    command: "pnpm dev",
-    url: "http://127.0.0.1:3000",
+    command: "pnpm build && pnpm start --port 3099",
+    url: "http://127.0.0.1:3099",
     reuseExistingServer: !process.env.CI,
+    timeout: 120_000,
     env: {
       ENQUIRY_MODE: "mock",
+      NEXT_PUBLIC_PARTNER_LOGO_PREVIEW: "true",
+      NEXT_PUBLIC_WHATSAPP_NUMBER: "2348036872321",
     },
   },
   projects: [
@@ -26,6 +29,10 @@ export default defineConfig({
     {
       name: "mobile-chrome",
       use: { ...devices["Pixel 7"] },
+    },
+    {
+      name: "tablet-chrome",
+      use: { ...devices["iPad (gen 7)"] },
     },
   ],
 });

@@ -23,10 +23,11 @@ export function RfqForm({ defaults }: Props) {
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const formElement = event.currentTarget;
     setStatus({ type: "pending" });
     setErrors({});
 
-    const form = new FormData(event.currentTarget);
+    const form = new FormData(formElement);
     const payload = Object.fromEntries(form.entries());
 
     try {
@@ -51,7 +52,7 @@ export function RfqForm({ defaults }: Props) {
         reference: data.reference,
         mode: data.mode,
       });
-      event.currentTarget.reset();
+      formElement.reset();
     } catch {
       setStatus({
         type: "error",

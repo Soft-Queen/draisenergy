@@ -92,6 +92,16 @@ export interface Partner {
     | "project-collaborator"
     | "unverified";
   publicationState: PublicationState;
+  /** Filename under /public/brand/partners/ */
+  logoAsset?: string;
+  /** Optional light-mark filename for dark surfaces */
+  logoOnDarkAsset?: string;
+  /** Production mark-rights approval (independent of preview mode) */
+  logoApproved?: boolean;
+  /** Soften black wordmarks on dark backgrounds */
+  invertOnDark?: boolean;
+  productCategory?: string;
+  website?: string;
   note: string;
 }
 

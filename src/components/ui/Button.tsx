@@ -34,7 +34,7 @@ type ButtonAsLink = Common & {
 export function Button(props: ButtonAsButton | ButtonAsLink) {
   const { children, variant = "primary", className = "" } = props;
   const classes = [
-    "inline-flex min-h-11 items-center justify-center gap-2 rounded-[6px] px-5 py-2.5 text-[0.95rem] font-semibold tracking-[-0.01em] transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-55",
+    "inline-flex min-h-11 items-center justify-center gap-2 rounded-sm px-5 py-2.5 text-[0.95rem] font-semibold tracking-[-0.01em] transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-55",
     variants[variant],
     className,
   ].join(" ");

@@ -16,10 +16,11 @@ export function ContactForm() {
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const formElement = event.currentTarget;
     setStatus({ type: "pending" });
     setErrors({});
 
-    const form = new FormData(event.currentTarget);
+    const form = new FormData(formElement);
     const payload = Object.fromEntries(form.entries());
 
     try {
@@ -44,7 +45,7 @@ export function ContactForm() {
         reference: data.reference,
         mode: data.mode,
       });
-      event.currentTarget.reset();
+      formElement.reset();
     } catch {
       setStatus({
         type: "error",
@@ -79,7 +80,7 @@ export function ContactForm() {
         <select
           id="category"
           name="category"
-          className="min-h-11 w-full rounded-[6px] border border-border bg-white px-3"
+          className="min-h-11 w-full rounded-sm border border-border bg-white px-3"
           defaultValue="project-discussion"
         >
           <option value="general">General enquiry</option>

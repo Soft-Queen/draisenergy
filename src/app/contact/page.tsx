@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/forms/ContactForm";
+import { WhatsAppContactCard } from "@/components/contact/WhatsAppContactCard";
 import { PageHero } from "@/components/layout/PageHero";
+import { CardBody, CardShell } from "@/components/ui/Card";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -14,7 +16,7 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Contact"
         title="Discuss your project"
-        description="Share enough context for a useful first conversation. Enquiry delivery requires an approved provider before production acceptance."
+        description="Share enough context for a useful first conversation. Our team reviews enquiries during business hours."
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Contact" },
@@ -26,7 +28,8 @@ export default function ContactPage() {
             <ContactForm />
           </div>
           <aside className="space-y-4 lg:col-span-5">
-            <div className="border border-border bg-surface p-5">
+            <CardShell className="bg-surface">
+              <CardBody>
               <h2 className="display text-xl">Direct contact</h2>
               <p className="mt-3 text-sm">
                 <a
@@ -36,7 +39,6 @@ export default function ContactPage() {
                   {site.contact.email}
                 </a>
               </p>
-              <p className="mt-1 text-xs text-steel">Email pending verification</p>
               <address className="mt-4 text-sm not-italic text-steel">
                 {site.contact.addressLines.map((line) => (
                   <span key={line} className="block">
@@ -44,13 +46,18 @@ export default function ContactPage() {
                   </span>
                 ))}
               </address>
-              <p className="mt-1 text-xs text-steel">Address pending verification</p>
-            </div>
-            <p className="text-sm text-steel">
-              Set <code className="rounded bg-white px-1">ENQUIRY_MODE=mock</code> locally to
-              exercise the form without a provider. Production requires{" "}
-              <code className="rounded bg-white px-1">ENQUIRY_MODE=provider</code> and a webhook.
-            </p>
+              </CardBody>
+            </CardShell>
+            <WhatsAppContactCard />
+            <CardShell>
+              <CardBody>
+              <h2 className="display text-xl">Request a quotation</h2>
+              <p className="mt-2 text-sm text-steel">
+                For procurement packages, use the quotation workflow so we can capture
+                specifications and delivery context.
+              </p>
+              </CardBody>
+            </CardShell>
           </aside>
         </div>
       </section>

@@ -21,7 +21,8 @@ export const site = {
       "Lagos State, Nigeria",
     ],
     addressStatus: "pending-verification" as const,
-    phone: null as string | null,
+    /** WhatsApp Business / mobile — E.164 without +. Env NEXT_PUBLIC_WHATSAPP_NUMBER overrides. */
+    phone: "2348036872321",
   },
   evidenceStrip: [
     { label: "Established", value: "2010" },

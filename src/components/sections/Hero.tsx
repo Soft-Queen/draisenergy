@@ -89,7 +89,7 @@ export function Hero() {
 
         <div className="md:col-span-4 lg:col-span-5 md:self-end">
           <p className="mb-3 text-xs text-white/55">
-            Illustrative industrial photography — not a Drais project site.
+            Representative industrial photography.
           </p>
           <dl className="grid grid-cols-1 gap-3 border border-white/15 bg-white/5 p-4 backdrop-blur-sm sm:grid-cols-3 md:grid-cols-1">
             {site.evidenceStrip.map((item) => (

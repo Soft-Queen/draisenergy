@@ -2,7 +2,7 @@
 
 Track unresolved approvals before public launch. Do not treat brief candidate claims as verified facts.
 
-**Last updated:** 2026-11-20  
+**Last updated:** 2026-11-20 (refinement pass)  
 **Source status:** Implementation brief present. Four original company profile PDFs were **not found** on the local machine at build time. Content below is grounded only in the brief and publicly visible copy from https://www.draisenergy.com/ (which currently shows injected gambling spam and should not be migrated).
 
 ## Blockers for production
@@ -12,10 +12,12 @@ Track unresolved approvals before public launch. Do not treat brief candidate cl
 | Official logo | Pending | Existing PNG captured from current site (`public/brand/logo-existing.png`); profiles reportedly show different marks. Confirm SVG + usage. |
 | Company profile PDFs | Missing | `Drais Energy Nig. Ltd. Profile_.pdf`, Oil & Gas Presentation, Telecoms, Power Profile not available for review. |
 | Contact details | Pending verify | Candidate from current site: `info@draisenergy.com`; `144, Egbeda Idimu Road, Celiat Bus Stop, Egbeda, Lagos State`. Brief notes conflicting emails across documents. |
-| Phone numbers | Missing | No verified phone published in available sources. |
+| Phone numbers | Provided | WhatsApp Business `2348036872321` supplied 2026-11-20. Confirm whether the same number is published as a voice line. |
 | Leadership bios/portraits | Pending | Brief notes blank COO entry and placeholder imagery in profiles. Do not publish until approved. |
 | Project attribution | Pending | Candidate projects listed with precise scope language; confirm Drais role, status dates, and media rights. |
-| OEM / partner marks | Pending | Candidate brand names listed as text only; no logos until relationship type + mark permission confirmed. |
+| OEM / partner marks | Preview only | 12 logos sourced and sanitised under `public/brand/partners/` (see `SOURCES.md`). Shown via `NEXT_PUBLIC_PARTNER_LOGO_PREVIEW` / local development. All remain `logoApproved: false` and `relationshipType: unverified` until legal/commercial sign-off. |
+| WhatsApp Business | Configured | Number `2348036872321` in `site.contact.phone` and `.env.local`. Set `NEXT_PUBLIC_WHATSAPP_NUMBER` on Vercel for production. |
+| MTN project reference | Withheld | Set to `draft` and removed from telecom industry listings until scope refresh is approved. |
 | Certifications | Pending | Candidate: ISO 9001:2015, ISO 45001:2018, COREN, Nigerian Content. Verify currency, scope, issuer, public permission. |
 | Enquiry delivery | Blocked | No email/CRM credentials supplied. Forms validate and return an explicit “not configured” production block; local mock only when `ENQUIRY_MODE=mock`. |
 | Hosting / domain | Pending | Owner to confirm host, HTTPS, redirects from compromised WordPress site. |

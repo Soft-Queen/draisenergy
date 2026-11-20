@@ -33,7 +33,7 @@ export function SiteHeader() {
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/80 bg-white/95 backdrop-blur-md">
+    <header className="site-header-glass sticky top-0 z-50 border-b border-border/80">
       <div className="container flex min-h-[4.25rem] items-center justify-between gap-4 py-3">
         <Logo />
 
@@ -49,14 +49,10 @@ export function SiteHeader() {
               >
                 <button
                   type="button"
-                  className="inline-flex min-h-11 items-center gap-1 rounded-[6px] px-3 text-sm font-semibold text-charcoal hover:bg-surface"
+                  className="inline-flex min-h-11 items-center gap-1 rounded-sm px-3 text-sm font-semibold text-charcoal hover:bg-surface"
                   aria-expanded={expanded}
                   aria-haspopup="true"
-                  onClick={() =>
-                    setActiveMenu((current) =>
-                      current === group.label ? null : group.label,
-                    )
-                  }
+                  onClick={() => setActiveMenu(group.label)}
                   onKeyDown={(event) => {
                     if (event.key === "Escape") setActiveMenu(null);
                   }}
@@ -67,18 +63,18 @@ export function SiteHeader() {
                 <AnimatePresence>
                   {expanded ? (
                     <motion.div
-                      initial={reduce ? false : { opacity: 0, y: 6 }}
+                      initial={reduce ? false : { opacity: 0.001, y: 6 }}
                       animate={{ opacity: 1, y: 0 }}
-                      exit={reduce ? undefined : { opacity: 0, y: 4 }}
+                      exit={reduce ? undefined : { opacity: 0.001, y: 4 }}
                       transition={{ duration: 0.18 }}
                       className="absolute left-0 top-full z-20 min-w-[18rem] pt-2"
                     >
-                      <div className="rounded-[8px] border border-border bg-white p-2 shadow-[0_18px_40px_rgba(25,27,30,0.12)]">
+                      <div className="rounded-md border border-border bg-white p-2 shadow-[0_18px_40px_rgba(25,27,30,0.12)]">
                         {group.items.map((item) => (
                           <Link
                             key={item.href}
                             href={item.href}
-                            className="block rounded-[6px] px-3 py-2.5 hover:bg-surface"
+                            className="block rounded-sm px-3 py-2.5 hover:bg-surface"
                             onClick={() => setActiveMenu(null)}
                           >
                             <span className="block text-sm font-semibold text-charcoal">
@@ -110,7 +106,7 @@ export function SiteHeader() {
         <button
           ref={menuButtonRef}
           type="button"
-          className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-[6px] border border-border lg:hidden"
+          className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-sm border border-border lg:hidden"
           aria-expanded={open}
           aria-controls={mobileNavId}
           aria-label={open ? "Close menu" : "Open menu"}
@@ -142,7 +138,7 @@ export function SiteHeader() {
                         <li key={item.href}>
                           <Link
                             href={item.href}
-                            className="block rounded-[6px] px-3 py-3 text-base font-semibold text-charcoal hover:bg-surface"
+                            className="block rounded-sm px-3 py-3 text-base font-semibold text-charcoal hover:bg-surface"
                             onClick={() => setOpen(false)}
                           >
                             {item.label}

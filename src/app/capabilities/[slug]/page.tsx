@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageHero } from "@/components/layout/PageHero";
 import { Button } from "@/components/ui/Button";
 import { capabilities, getCapability } from "@/content/capabilities";
 import { getIndustry } from "@/content/industries";
+import {
+  capabilityHeroImages,
+  deliveryApproachSteps,
+} from "@/lib/capability-media";
+import type { CapabilitySlug } from "@/content/types";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -28,6 +34,7 @@ export default async function CapabilityDetailPage({ params }: Props) {
   const { slug } = await params;
   const capability = getCapability(slug);
   if (!capability) notFound();
+  const image = capabilityHeroImages[capability.slug as CapabilitySlug];
 
   return (
     <>
@@ -44,7 +51,9 @@ export default async function CapabilityDetailPage({ params }: Props) {
       <section className="section">
         <div className="container grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-7">
-            <h2 className="display h2">Highlights</h2>
+            <h2 className="display h2">What this capability covers</h2>
+            <p className="mt-4 text-steel">{capability.summary}</p>
+            <h2 className="display h2 mt-12">Highlights</h2>
             <ul className="mt-5 space-y-3">
               {capability.highlights.map((item) => (
                 <li key={item} className="border-l-2 border-brand pl-4 text-steel">
@@ -52,8 +61,32 @@ export default async function CapabilityDetailPage({ params }: Props) {
                 </li>
               ))}
             </ul>
+            <h2 className="display h2 mt-12">How we engage</h2>
+            <ol className="mt-5 space-y-3">
+              {deliveryApproachSteps.map((step, index) => (
+                <li key={step} className="flex gap-3 text-steel">
+                  <span className="font-display text-sm font-bold text-brand">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span>{step}</span>
+                </li>
+              ))}
+            </ol>
           </div>
           <aside className="space-y-6 lg:col-span-5">
+            {image ? (
+              <figure>
+                <div className="relative aspect-[4/3]">
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                  />
+                </div>
+              </figure>
+            ) : null}
             <div className="border border-border p-5">
               <h2 className="display text-xl">Relevant industries</h2>
               <ul className="mt-4 space-y-2">

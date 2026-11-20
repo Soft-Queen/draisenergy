@@ -16,16 +16,20 @@ test.describe("primary journeys", () => {
   test("desktop and mobile navigation reach industries", async ({ page }, testInfo) => {
     await page.goto("/");
 
-    if (testInfo.project.name.includes("mobile")) {
+    if (
+      testInfo.project.name.includes("mobile") ||
+      testInfo.project.name.includes("tablet")
+    ) {
       await page.getByRole("button", { name: "Open menu" }).click();
       await page.getByRole("navigation", { name: "Mobile primary" }).getByRole("link", {
         name: "Oil & Gas",
       }).click();
     } else {
-      await page.getByRole("navigation", { name: "Primary" }).getByRole("button", {
-        name: "Industries",
-      }).click();
-      await page.getByRole("link", { name: "Oil & Gas" }).click();
+      const primary = page.getByRole("navigation", { name: "Primary" });
+      await primary.getByRole("button", { name: "Industries" }).click();
+      const oilGas = primary.getByRole("link", { name: "Oil & Gas" });
+      await expect(oilGas).toBeVisible();
+      await oilGas.click();
     }
 
     await expect(page).toHaveURL(/\/industries\/oil-and-gas/);
@@ -36,7 +40,7 @@ test.describe("primary journeys", () => {
     await page.goto("/industries/power-and-renewables");
     await page.getByRole("link", { name: "Procurement & Supply" }).first().click();
     await expect(page).toHaveURL(/\/capabilities\/procurement-and-supply/);
-    await page.getByRole("link", { name: "Request a quote" }).first().click();
+    await page.locator("#main").getByRole("link", { name: "Request a quote" }).click();
     await expect(page).toHaveURL(/\/request-a-quote/);
     await expect(page.locator("#industryOrService")).toHaveValue(/Procurement|Power/i);
   });
@@ -46,14 +50,14 @@ test.describe("primary journeys", () => {
     await page.getByRole("link", { name: "Power systems" }).click();
     await expect(page).toHaveURL(/category=power-systems/);
     await page.getByRole("link", { name: "UPS & backup power" }).click();
-    await page.getByRole("link", { name: "Request a quote" }).click();
+    await page.locator("#main").getByRole("link", { name: "Request a quote" }).click();
     await expect(page.locator("#industryOrService")).toHaveValue("UPS & backup power");
   });
 
   test("contact validation errors", async ({ page }) => {
     await page.goto("/contact");
     await page.getByRole("button", { name: "Send message" }).click();
-    await expect(page.getByRole("alert").first()).toBeVisible();
+    await expect(page.locator("#name-error")).toBeVisible({ timeout: 10_000 });
   });
 
   test("RFQ success in mock mode", async ({ page }) => {

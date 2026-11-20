@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/layout/PageHero";
+import { CardBody, InteractiveCardLink } from "@/components/ui/Card";
+import { cn } from "@/lib/cn";
 import { getProductsByCategory, productCategories } from "@/content/products";
 import type { ProductCategorySlug } from "@/content/types";
 
@@ -41,10 +43,7 @@ export default async function ProductsPage({ searchParams }: Props) {
           <div className="flex flex-wrap gap-2" role="list" aria-label="Product categories">
             <Link
               href="/products"
-              className={[
-                "inline-flex min-h-10 items-center border px-3 text-sm font-semibold",
-                !category ? "border-charcoal bg-charcoal text-white" : "border-border",
-              ].join(" ")}
+              className={cn("chip-filter", !category && "chip-filter--active")}
             >
               All
             </Link>
@@ -52,12 +51,10 @@ export default async function ProductsPage({ searchParams }: Props) {
               <Link
                 key={item.slug}
                 href={`/products?category=${item.slug}`}
-                className={[
-                  "inline-flex min-h-10 items-center border px-3 text-sm font-semibold",
-                  category === item.slug
-                    ? "border-charcoal bg-charcoal text-white"
-                    : "border-border",
-                ].join(" ")}
+                className={cn(
+                  "chip-filter",
+                  category === item.slug && "chip-filter--active",
+                )}
               >
                 {item.title}
               </Link>
@@ -65,7 +62,7 @@ export default async function ProductsPage({ searchParams }: Props) {
           </div>
 
           {products.length === 0 ? (
-            <p className="mt-10 border border-dashed border-border p-8 text-steel">
+            <p className="card-static mt-10 border-dashed p-8 text-steel">
               No published products in this category yet. Request a quote with your
               specification and we will respond through the approved channel once
               enquiry delivery is configured.
@@ -73,19 +70,25 @@ export default async function ProductsPage({ searchParams }: Props) {
           ) : (
             <ul className="mt-10 grid gap-4 md:grid-cols-2">
               {products.map((product) => (
-                <li key={product.slug} className="border border-border p-5">
-                  <p className="text-xs tracking-[0.08em] text-steel uppercase">
-                    {productCategories.find((item) => item.slug === product.category)?.title}
-                  </p>
-                  <h2 className="display mt-2 text-2xl">
-                    <Link
-                      href={`/products/${product.slug}`}
-                      className="underline-offset-4 hover:underline"
-                    >
-                      {product.title}
-                    </Link>
-                  </h2>
-                  <p className="mt-3 text-sm text-steel">{product.summary}</p>
+                <li key={product.slug}>
+                  <InteractiveCardLink
+                    href={`/products/${product.slug}`}
+                    ariaLabel={product.title}
+                  >
+                    <CardBody>
+                      <p
+                        aria-hidden
+                        className="text-xs tracking-[0.08em] text-steel uppercase"
+                      >
+                        {
+                          productCategories.find((item) => item.slug === product.category)
+                            ?.title
+                        }
+                      </p>
+                      <h2 className="display mt-2 text-2xl">{product.title}</h2>
+                      <p className="mt-3 text-sm text-steel">{product.summary}</p>
+                    </CardBody>
+                  </InteractiveCardLink>
                 </li>
               ))}
             </ul>

@@ -33,7 +33,7 @@ export function AboutTeaser() {
               />
             </div>
             <figcaption className="mt-3 text-sm text-steel">
-              Illustrative imagery — replace with approved Drais photography before launch.
+              Representative industrial photography.
             </figcaption>
           </figure>
         </Reveal>

@@ -1,13 +1,16 @@
 import { Reveal } from "@/components/motion/Reveal";
 import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { EnquiryCtaBackdrop } from "./EnquiryCtaBackdrop";
 
 export function EnquiryCta() {
   return (
     <section className="section">
       <div className="container">
         <Reveal>
-          <div className="border border-border bg-surface px-6 py-12 md:px-12 md:py-16">
+          <div className="enquiry-cta-panel px-6 py-12 md:px-12 md:py-16">
+            <EnquiryCtaBackdrop />
+            <div className="relative">
             <SectionHeading
               title="Your next project starts with a conversation."
               description="Tell us about a procurement package, a technical specification, or a project discussion. We will respond through the approved enquiry channel once delivery is configured."
@@ -17,6 +20,7 @@ export function EnquiryCta() {
               <Button href="/contact" variant="secondary">
                 Discuss your project
               </Button>
+            </div>
             </div>
           </div>
         </Reveal>

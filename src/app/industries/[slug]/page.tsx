@@ -119,7 +119,7 @@ export default async function IndustryDetailPage({ params }: Props) {
                 />
               </div>
               <figcaption className="mt-2 text-sm text-steel">
-                Illustrative imagery — not a Drais project photograph.
+                Representative industry photography.
               </figcaption>
             </figure>
 

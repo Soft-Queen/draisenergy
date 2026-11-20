@@ -1,8 +1,12 @@
-import Image from "next/image";
-import Link from "next/link";
 import { Reveal } from "@/components/motion/Reveal";
 import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import {
+  CardBody,
+  CardMedia,
+  CardMediaImage,
+  InteractiveCardLink,
+} from "@/components/ui/Card";
 import { getFeaturedProjects } from "@/content/projects";
 
 export function FeaturedProjects() {
@@ -15,56 +19,47 @@ export function FeaturedProjects() {
           <SectionHeading
             eyebrow="Projects"
             title="Experience that speaks for itself."
-            description="Featured references state Drais scope precisely. Candidate entries remain labeled pending final publication approval."
+            description="Each reference states Drais scope precisely — equipment supply and support are not presented as full facility delivery."
           />
         </Reveal>
 
-        <div className="mt-10 grid gap-5 lg:grid-cols-3">
+        <ul className="mt-10 grid gap-5 lg:grid-cols-3">
           {projects.map((project, index) => (
-            <Reveal key={project.slug} delay={index * 0.06} className="h-full">
-              <article className="flex h-full flex-col border border-border bg-white">
-                {project.image ? (
-                  <div className="relative aspect-[16/10]">
-                    <Image
-                      src={project.image.src}
-                      alt={project.image.alt}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 1024px) 100vw, 33vw"
-                    />
-                  </div>
-                ) : null}
-                <div className="flex flex-1 flex-col p-5">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span className="review-badge">
-                      {project.publicationState === "pending-review"
-                        ? "Pending review"
-                        : "Published"}
-                    </span>
-                    <span className="text-xs text-steel">
+            <li key={project.slug}>
+              <Reveal delay={index * 0.06} className="h-full">
+                <InteractiveCardLink
+                  href={`/projects/${project.slug}`}
+                  ariaLabel={project.title}
+                  className="flex h-full flex-col overflow-hidden"
+                >
+                  {project.image ? (
+                    <CardMedia>
+                      <CardMediaImage
+                        src={project.image.src}
+                        alt={project.image.alt}
+                        sizes="(max-width: 1024px) 100vw, 33vw"
+                      />
+                    </CardMedia>
+                  ) : null}
+                  <CardBody className="flex flex-1 flex-col">
+                    <p className="text-xs text-steel">
                       {project.year} · {project.location}
-                    </span>
-                  </div>
-                  <h3 className="display mt-3 text-xl">
-                    <Link
-                      href={`/projects/${project.slug}`}
-                      className="underline-offset-4 hover:underline"
-                    >
-                      {project.title}
-                    </Link>
-                  </h3>
-                  <p className="mt-3 text-sm text-steel">{project.scope}</p>
-                  <p className="mt-2 text-sm">
-                    <span className="font-semibold">Drais role:</span> {project.draisRole}
-                  </p>
-                  <p className="mt-auto pt-4 text-xs text-steel">
-                    Status: {project.status} (as of {project.statusAsOf})
-                  </p>
-                </div>
-              </article>
-            </Reveal>
+                    </p>
+                    <h3 className="display mt-3 text-xl">{project.title}</h3>
+                    <p className="mt-3 text-sm text-steel">{project.scope}</p>
+                    <p className="mt-2 text-sm">
+                      <span className="font-semibold">Drais role:</span>{" "}
+                      {project.draisRole}
+                    </p>
+                    <p className="mt-auto pt-4 text-xs text-steel">
+                      Status: {project.status} (as of {project.statusAsOf})
+                    </p>
+                  </CardBody>
+                </InteractiveCardLink>
+              </Reveal>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <Reveal className="mt-8">
           <Button href="/projects" variant="secondary">

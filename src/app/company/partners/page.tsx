@@ -1,20 +1,29 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { PageHero } from "@/components/layout/PageHero";
-import { partners } from "@/content/partners";
+import {
+  getPartnerLogoSrc,
+  getPublicPartners,
+  isPartnerLogoPreviewEnabled,
+  relationshipLabels,
+} from "@/lib/partners-display";
 
 export const metadata: Metadata = {
   title: "Partners",
   description:
-    "Manufacturer, supplier and project relationships under review for public publication.",
+    "Manufacturer and supplier brands referenced in Drais Energy project delivery materials.",
 };
 
 export default function PartnersPage() {
+  const partners = getPublicPartners();
+  const preview = isPartnerLogoPreviewEnabled();
+
   return (
     <>
       <PageHero
         eyebrow="Company"
         title="Partners"
-        description="Manufacturer supplied does not imply authorised distributor. Relationship category, active status and logo rights must be confirmed before mark usage."
+        description="Manufacturer and supplier names from company materials. Listing a brand does not imply authorised distributor status."
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Company", href: "/company" },
@@ -23,24 +32,59 @@ export default function PartnersPage() {
       />
       <section className="section">
         <div className="container">
-          <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {partners.map((partner) => (
-              <li key={partner.id} className="border border-border bg-white p-5">
-                <div className="flex flex-wrap items-center gap-2">
-                  <h2 className="display text-xl">{partner.name}</h2>
-                  <span className="review-badge">Pending review</span>
-                </div>
-                <p className="mt-2 text-xs tracking-[0.08em] text-steel uppercase">
-                  Relationship: {partner.relationshipType}
-                </p>
-                <p className="mt-3 text-sm text-steel">{partner.note}</p>
-              </li>
-            ))}
+          {preview ? (
+            <p className="mb-8 max-w-3xl text-sm text-steel">
+              Logo preview mode is active for visual review. Marks are not
+              production-approved until relationship classification and brand
+              usage rights are confirmed.
+            </p>
+          ) : null}
+
+          <ul className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {partners.map((partner) => {
+              const logoSrc = getPartnerLogoSrc(partner, "light");
+              return (
+                <li key={partner.id} className="border-t border-border pt-6">
+                  <div className="partner-logo-optical partner-logo-optical--page">
+                    {logoSrc ? (
+                      <Image
+                        src={logoSrc}
+                        alt={`${partner.name} logo`}
+                        width={200}
+                        height={72}
+                        unoptimized
+                        className="h-12 w-auto max-w-[11rem] object-contain object-left"
+                        sizes="180px"
+                      />
+                    ) : (
+                      <span className="font-display text-xl font-semibold">
+                        {partner.name}
+                      </span>
+                    )}
+                  </div>
+                  <h2 className="display mt-5 text-xl">{partner.name}</h2>
+                  <p className="mt-2 text-xs tracking-[0.08em] text-steel uppercase">
+                    {relationshipLabels[partner.relationshipType]}
+                  </p>
+                  {partner.productCategory ? (
+                    <p className="mt-3 text-sm text-steel">{partner.productCategory}</p>
+                  ) : null}
+                  {partner.website ? (
+                    <p className="mt-4">
+                      <a
+                        href={partner.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-semibold underline-offset-4 hover:underline"
+                      >
+                        Official website
+                      </a>
+                    </p>
+                  ) : null}
+                </li>
+              );
+            })}
           </ul>
-          <p className="mt-8 max-w-3xl text-sm text-steel">
-            Logos are intentionally omitted. Text names are candidate references from
-            company materials and the existing public website, not verified endorsements.
-          </p>
         </div>
       </section>
     </>
