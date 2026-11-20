@@ -4,11 +4,13 @@ import { Button } from "@/components/ui/Button";
 import { CardBody, CardShell } from "@/components/ui/Card";
 import { companyStory } from "@/content/company";
 import { site } from "@/content/site";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Company",
+export const metadata: Metadata = pageMetadata({
+  title: "About Drais Energy",
   description: companyStory.origin,
-};
+  path: "/company",
+});
 
 export default function CompanyPage() {
   return (

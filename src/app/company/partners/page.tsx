@@ -8,11 +8,14 @@ import {
   relationshipLabels,
 } from "@/lib/partners-display";
 
-export const metadata: Metadata = {
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({
   title: "Partners",
   description:
-    "Manufacturer and supplier brands referenced in Drais Energy project delivery materials.",
-};
+    "Manufacturer and supplier brands referenced in Drais Energy project delivery materials. Listing a brand does not imply authorised distributor status.",
+  path: "/company/partners",
+});
 
 export default function PartnersPage() {
   const partners = getPublicPartners();

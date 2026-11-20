@@ -11,6 +11,7 @@ import {
   deliveryApproachSteps,
 } from "@/lib/capability-media";
 import type { CapabilitySlug } from "@/content/types";
+import { pageMetadata } from "@/lib/seo";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -24,10 +25,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const capability = getCapability(slug);
   if (!capability) return {};
-  return {
+  const hero = capabilityHeroImages[capability.slug as CapabilitySlug];
+  return pageMetadata({
     title: capability.title,
     description: capability.summary,
-  };
+    path: `/capabilities/${capability.slug}`,
+    image: hero
+      ? {
+          url: hero.src,
+          alt: hero.alt,
+        }
+      : undefined,
+  });
 }
 
 export default async function CapabilityDetailPage({ params }: Props) {

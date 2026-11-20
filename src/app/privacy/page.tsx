@@ -2,10 +2,14 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/layout/PageHero";
 import { site } from "@/content/site";
 
-export const metadata: Metadata = {
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({
   title: "Privacy notice",
-  description: "How Drais Energy handles website enquiry information.",
-};
+  description:
+    "How Drais Energy handles website enquiry information submitted through contact and request-a-quote forms.",
+  path: "/privacy",
+});
 
 export default function PrivacyPage() {
   return (

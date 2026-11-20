@@ -8,6 +8,7 @@ import { getCapability } from "@/content/capabilities";
 import { getIndustry, industries } from "@/content/industries";
 import { getCategory } from "@/content/products";
 import { getProject } from "@/content/projects";
+import { pageMetadata } from "@/lib/seo";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -21,10 +22,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const industry = getIndustry(slug);
   if (!industry) return {};
-  return {
+  return pageMetadata({
     title: industry.title,
     description: industry.summary,
-  };
+    path: `/industries/${industry.slug}`,
+    image: industry.image
+      ? {
+          url: industry.image.src,
+          alt: industry.image.alt,
+        }
+      : undefined,
+  });
 }
 
 export default async function IndustryDetailPage({ params }: Props) {

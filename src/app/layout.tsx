@@ -27,21 +27,55 @@ export const metadata: Metadata = {
     template: `%s | ${site.shortName}`,
   },
   description: site.supportingCopy,
+  applicationName: site.shortName,
+  authors: [{ name: site.legalName, url: site.url }],
+  creator: site.legalName,
+  publisher: site.legalName,
+  keywords: [
+    "Drais Energy",
+    "engineering",
+    "procurement",
+    "oil and gas",
+    "power",
+    "telecommunications",
+    "Nigeria",
+    "infrastructure",
+  ],
+  icons: {
+    icon: [
+      { url: "/brand/icons/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/brand/icons/favicon-16.png", sizes: "16x16", type: "image/png" },
+      { url: "/brand/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/brand/icons/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [{ url: "/brand/icons/apple-touch-icon.png", sizes: "180x180" }],
+    shortcut: ["/brand/icons/favicon-32.png"],
+  },
   openGraph: {
-    title: site.shortName,
+    title: `${site.shortName} | Engineering & Infrastructure Solutions`,
     description: site.supportingCopy,
     url: site.url,
     siteName: site.legalName,
     locale: site.locale,
     type: "website",
-    images: [{ url: "/images/og-default.jpg", width: 1920, height: 1280 }],
+    images: [
+      {
+        url: "/images/og-default.jpg",
+        width: 1920,
+        height: 1280,
+        alt: `${site.shortName} — engineering and infrastructure solutions`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.shortName} | Engineering & Infrastructure Solutions`,
+    description: site.supportingCopy,
+    images: ["/images/og-default.jpg"],
   },
   robots: {
     index: true,
     follow: true,
-  },
-  alternates: {
-    canonical: "/",
   },
 };
 

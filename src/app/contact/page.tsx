@@ -4,11 +4,14 @@ import { WhatsAppContactCard } from "@/components/contact/WhatsAppContactCard";
 import { PageHero } from "@/components/layout/PageHero";
 import { CardBody, CardShell } from "@/components/ui/Card";
 import { site } from "@/content/site";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Contact",
-  description: "Discuss a project or partnership with Drais Energy.",
-};
+  description:
+    "Contact Drais Energy to discuss a project, partnership or procurement enquiry. Our team reviews messages during business hours.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (

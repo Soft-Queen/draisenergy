@@ -14,11 +14,14 @@ import type { IndustrySlug } from "@/content/types";
 
 export const instant = false;
 
-export const metadata: Metadata = {
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({
   title: "Projects",
   description:
     "Project portfolio with precise Drais role attribution across oil & gas, power and telecommunications.",
-};
+  path: "/projects",
+});
 
 type Props = {
   searchParams: Promise<{ sector?: string }>;

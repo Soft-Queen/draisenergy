@@ -8,11 +8,14 @@ import { getProject } from "@/content/projects";
 
 export const instant = false;
 
-export const metadata: Metadata = {
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({
   title: "Request a quote",
   description:
-    "Request a procurement quotation from Drais Energy with industry, product or project context.",
-};
+    "Request a procurement quotation from Drais Energy with industry, product or project context. Quotation workflow — not ecommerce.",
+  path: "/request-a-quote",
+});
 
 type Props = {
   searchParams: Promise<{

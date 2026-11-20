@@ -8,11 +8,14 @@ import type { ProductCategorySlug } from "@/content/types";
 
 export const instant = false;
 
-export const metadata: Metadata = {
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({
   title: "Products",
   description:
-    "Industrial product categories for quotation — not an ecommerce catalogue. No prices, stock counts or checkout.",
-};
+    "Industrial product categories for quotation from Drais Energy — not an ecommerce catalogue. No prices, stock counts or checkout.",
+  path: "/products",
+});
 
 type Props = {
   searchParams: Promise<{ category?: string }>;

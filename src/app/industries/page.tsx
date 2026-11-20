@@ -8,11 +8,14 @@ import {
 } from "@/components/ui/Card";
 import { getPublishedIndustries } from "@/content/industries";
 
-export const metadata: Metadata = {
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({
   title: "Industries",
   description:
     "Oil & Gas, Power & Renewable Energy, and Telecommunications — the three principal industry pathways for Drais Energy.",
-};
+  path: "/industries",
+});
 
 export default function IndustriesPage() {
   const industries = getPublishedIndustries();

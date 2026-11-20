@@ -3,11 +3,14 @@ import { PageHero } from "@/components/layout/PageHero";
 import { Button } from "@/components/ui/Button";
 import { CardBody, CardShell } from "@/components/ui/Card";
 
-export const metadata: Metadata = {
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({
   title: "Resources",
   description:
-    "Approved public documents and company profiles from Drais Energy.",
-};
+    "Approved public documents and company profiles from Drais Energy. Request publication-safe materials through contact or request a quote.",
+  path: "/resources",
+});
 
 export default function ResourcesPage() {
   return (

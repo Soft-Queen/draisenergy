@@ -9,6 +9,7 @@ import {
   products,
 } from "@/content/products";
 import { getIndustry } from "@/content/industries";
+import { pageMetadata } from "@/lib/seo";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -22,10 +23,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const product = getProduct(slug);
   if (!product) return {};
-  return {
+  return pageMetadata({
     title: product.title,
     description: product.summary,
-  };
+    path: `/products/${product.slug}`,
+  });
 }
 
 export default async function ProductDetailPage({ params }: Props) {

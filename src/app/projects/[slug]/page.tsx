@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { getCapability } from "@/content/capabilities";
 import { getIndustry } from "@/content/industries";
 import { getProject, projects } from "@/content/projects";
+import { pageMetadata } from "@/lib/seo";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -22,10 +23,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const project = getProject(slug);
   if (!project) return {};
-  return {
+  return pageMetadata({
     title: project.title,
     description: project.summary,
-  };
+    path: `/projects/${project.slug}`,
+    image: project.image
+      ? {
+          url: project.image.src,
+          alt: project.image.alt,
+        }
+      : undefined,
+  });
 }
 
 export default async function ProjectDetailPage({ params }: Props) {

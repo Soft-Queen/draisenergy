@@ -3,11 +3,14 @@ import { PageHero } from "@/components/layout/PageHero";
 import { Button } from "@/components/ui/Button";
 import { credentials } from "@/content/partners";
 
-export const metadata: Metadata = {
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({
   title: "HSSEQ & certifications",
   description:
     "Quality, health, safety, security and environment overview for Drais Energy. Candidate certifications require verification before public claims.",
-};
+  path: "/company/hsseq",
+});
 
 export default function HsseqPage() {
   return (

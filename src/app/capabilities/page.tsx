@@ -3,11 +3,14 @@ import { PageHero } from "@/components/layout/PageHero";
 import { CardBody, InteractiveCardLink } from "@/components/ui/Card";
 import { getPublishedCapabilities } from "@/content/capabilities";
 
-export const metadata: Metadata = {
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata: Metadata = pageMetadata({
   title: "Capabilities",
   description:
     "Engineering, procurement, construction, commissioning, operations and maintenance — plus consultancy, training and critical infrastructure.",
-};
+  path: "/capabilities",
+});
 
 export default function CapabilitiesPage() {
   const capabilities = getPublishedCapabilities();
